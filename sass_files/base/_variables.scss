@@ -1,0 +1,31 @@
+// ***** Variables related to Portal Goes here *****
+
+// ********** IMPORTANT ***************//
+
+//#### Appead "mb" before your variable name to aviod conflict with other vendors####//
+
+// "mb" - memory game
+
+// ********** END ***********************//
+
+
+// ### Overriding BS's base font size
+
+$font-size-base: 14px !default; // Using boostrap's small font size
+
+//### Overriding BS's base font family 
+
+
+$font-family-base: "roboto-regular", Arial, sans-serif;
+
+$mb-roboto-bold     : "roboto-bold" , "roboto-regular", Arial, sans-serif;
+$mb-roboto-regular : $font-family-base;
+$mb-color-base: #252525;
+$mb-cell-color : #660a4d;
+$mb-match-yes : #5a660a;
+$mb-version: "1.0.0" !default;
+
+
+$FONTFILEURL : "../fonts/" !global;
+
+$IMAGEPATH : "../images/" !global;

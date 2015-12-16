@@ -1,0 +1,7 @@
+# typings folder
+typings/
+
+# Other files and folders
+.settings/
+.vscode/
+

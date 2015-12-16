@@ -1,0 +1,73 @@
+@include setFontFace('roboto-bold', 'roboto-bold', 'roboto-bold');
+
+@include setFontFace('roboto-regular', 'roboto-regular', 'roboto-regular');
+
+body{
+	
+		margin: 0; padding: 0;
+		
+		
+		font : {
+			
+			family : $font-family-base;
+			
+			size : $font-size-base;
+	
+		}
+		
+		background-color: #ffffff;
+	}
+
+a{
+	text-decoration: none;
+	
+	color: $mb-color-base;
+	
+	&:hover , &:active , &:focus{
+		outline: 0;	text-decoration:none;
+	}
+	
+	img{border: none;}
+	
+	
+}
+
+.hide{display: none;}
+
+.clearfix{
+	
+	@include clearfix();
+}
+
+h3{
+	font-family: $font-family-base;
+	font-size: 20px;
+	margin: 0;
+}
+
+.padTop15{
+	padding-top: 15px;
+}
+
+.padTop10{
+	padding-top: 10px;
+}
+
+
+.main{
+	
+	&-wrapper{
+		
+			width: 100%;
+	}
+	
+	&-content{
+		
+		max-width: 1140px;
+		margin-left: auto; 
+		margin-right: auto; 
+		padding-left: 0.9375rem; 
+		padding-right: 0.9375rem;
+	}
+}
+

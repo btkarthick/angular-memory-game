@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="gameapp">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Memory Game :: Angular way</title>
+	<link rel="stylesheet" href="css/global.css" />
+</head>
+
+<body>
+
+	<div class="main-wrapper">
+		<div class="main-content">
+			<!--Start of Header -->
+			<header class="site-header">
+				<div class="clearfix">
+					<div class="logo"><a href="#">Logo</a></div>
+				</div>
+			</header>
+			<!--End of Header-->
+
+			<div class="content">
+				<div class="gm-wrapper" data-ng-controller="GameCtrl as gamectrl">
+
+					<div class="gm-top clearfix">
+
+							<div class="gm-top-left">
+							<div class="padTop10">
+								<h3>You have matched :
+										<span data-ng-bind="gamectrl.matchedPairs"></span></h3>
+							</div>
+							
+							<div class="padTop10">
+								<h3>
+									Yet to be matched : 
+									<span data-ng-bind="gamectrl.totalPairs - gamectrl.matchedPairs"></span>
+								</h3>
+							</div>
+							</div>
+
+						<div class="gm-top-right">
+							<!--This is right-->
+						</div>
+
+					</div>
+
+					<data-game-cells data-ng-cloak="" 
+									 matched="gamectrl.matchedPairs" 
+									 success="gamectrl.finishedSuccess" 
+									 totalpairs="{{gamectrl.totalPairs}}">
+					</data-game-cells>
+					
+					<div class="gm-bottom success" data-ng-show="gamectrl.finishedSuccess">
+						<strong>Well done!</strong>
+						You have done a great job!!! Press "F5" to Play Again!
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<!--Start of Footer-->
+			<footer class="site-footer">
+				&copy; Copy Right 2015, All Rights Reserved.
+			</footer>
+			<!--End of Footer-->
+
+		</div>
+	</div>
+
+	<script src="scripts/jquery-1.11.3.min.js"></script>
+	<script src="scripts/angular.v1.4.8.min.js"></script>
+	<script src="scripts/lodash3.10.1.min.js"></script>
+
+	<script src="gameapp/gameapp.module.js"></script>
+	<script src="gameapp/game.controller.js"></script>
+	<script src="gameapp/game.directive.js"></script>
+	<script src="gameapp/game.factory.js"></script>
+
+
+	<!-- Start of Templates -->
+	<script type="text/ng-template" id="tpl-game-cells.html">
+		<div class="gm-table clearfix" data-ng-style="{width : dirctrl.setWidth()} ">
+
+			<section data-ng-class="{ 'clearfix' : ($index + 1)%(dirctrl.allowedCells) === 0, 'matched' : cell.isMatched }" data-ng-repeat="cell in dirctrl.cells track by $index"
+			data-ng-click="dirctrl.setPlayGame($index)">
+
+				<span data-ng-show="cell.isVisible" data-ng-bind="cell.value"></span>
+
+			</section>
+
+		</div>
+	</script>
+
+</body>
+
+</html>

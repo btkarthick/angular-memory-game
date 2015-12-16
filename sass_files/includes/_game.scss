@@ -1,0 +1,88 @@
+// Game related styles goes here
+
+// gm stands for game
+
+.gm{
+	
+	
+	&-wrapper{
+		width: 100%;
+	}
+	
+	&-top{
+		
+		padding-top: 10px;
+		
+		&-left{
+			
+			float: left;
+			padding-left: 15px;
+			h3{
+				font-weight: normal;
+				font-size: 14px;
+				
+				span{
+					font-weight: bold;
+				}
+			}
+			
+		}
+		
+		&-right{
+			
+			float: right;
+			padding-right: 15px;
+		}
+		
+	}
+	
+	&-bottom{
+		
+				width: 520px;
+				border-radius: 0.25rem;
+				margin: 2em auto;
+				padding: 15px;
+				font-size: 16px;
+				
+				&.success{
+					
+						background-color: #dff0d8;
+						border-color: #d0e9c6;
+						color: #3c763d;
+				}
+			}
+	
+	
+	
+	&-table{
+				padding-top: 30px;
+				margin: 0 auto;
+				width: 400px;
+				
+				> section{
+					float: left;
+					background-color: #660a4d;
+					border-radius: 3px;
+					float: left;
+					font-size: 15px;
+					margin-left: 5px;
+					margin-top: 5px;
+					text-align: center;
+					width: 70px;
+					height: 70px;
+					cursor: pointer;
+										
+					span{
+						color: #FFFFFF;
+						display: block;
+						margin-top: 25px;
+					}
+					
+					&.matched{
+						
+						background-color: #5a660a;
+						cursor: initial;
+					}
+				}
+			}
+	}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html ng-app="memoryApp">
+<head>
+
+<script src="angular.min.js"></script>
+<style>
+body { margin: 20px 60px;
+}
+.game-container { margin-top: 30px;
+}
+.memory-cell {
+    border-radius: 3px;
+    float: left;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 24px 0;
+    text-align: center;
+    width: 70px;
+}
+.memory-cell span {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	user-select: none; 
+}
+.txt-game-over {
+	color: #660a4d;
+}
+.cur-0 { cursor: initial; }
+.cur-1 { cursor: pointer;
+}
+.col-bg0 { background-color: #5a660a; }
+.col-bg1 { background-color: #660a4d;
+}
+.col-font0 { color: white; }
+.col-font1 { color: #660a4d;
+}
+.mr-rt { margin-right: 5px; }
+.mr-bt { margin-bottom: 5px;
+}
+.clr { clear: both;
+}
+</style>
+</head>
+
+
+<body ng-controller="memoryGameController">
+
+<h3>Hi Kids, Lets play Memory Game :)</h3>
+<div class="game-container">
+	<div class="memory-cell" 
+	ng-repeat="cell in cells" 
+	ng-class="[{'clr': $index%4==0}, {'mr-bt': $last}, cells[$index].cur, cells[$index].colBg, cells[$index].colFont]" 
+	ng-click="cellClicked($index)">
+		<span ng-class="cells[$index].colFont" >{{cell.no}}</span>
+	</div>
+	<div class="clr"></div>
+</div>
+<h3 ng-show="gameOver" class="txt-game-over">SUCCESS!!!! Press "F5" to Play Again!</h3>
+
+<script>
+angular.module("memoryApp", [])
+.controller("memoryGameController", function($scope, $timeout) {
+	//-----------------------
+	//	variables
+	//
+	$scope.cells = [];
+	$scope.pairsTotal = 8;
+	$scope.pairsMatched = 0;
+	$scope.gameOver = false;
+	$scope.newPair = [];
+	$scope.prevCIx = -1;
+	var cur0 = 'cur-0';
+	var cur1 = 'cur-1';
+	var cFt0 = 'col-font0';
+	var cFt1 = 'col-font1';
+	var cBg0 = 'col-bg0';
+	var cBg1 = 'col-bg1';
+	var timer;
+	var deactivateCellClick = 0;
+	var maxDigits = 100;
+
+	//-----------------------
+	//	functions
+	//
+	function fnShuffle(o) {
+		for(var r, t, i = o.length; i; r = parseInt(Math.random() * i), t = o[--i], o[i] = o[r], o[r] = t);
+		return o;
+	};
+	function fnGetRand() {
+		var rand = Math.round(Math.random() * maxDigits);
+		console.log(rand);
+		return rand;
+	}
+	function fnPopulatePair(nRn) {
+		$scope.cells.push({no:nRn, cur:cur1, colBg:cBg1, colFont:cFt1});
+		$scope.cells.push({no:nRn, cur:cur1, colBg:cBg1, colFont:cFt1});
+	}
+	function fnPopulateUniquePairs() {
+		if($scope.cells.length<16) {
+			var rn = fnGetRand();
+			var isUnique = true;
+			for(var i=0; i<$scope.cells.length; i++) {
+				if($scope.cells[i].no == rn) {
+					isUnique = false;
+					break;
+				}
+			}
+			if(isUnique) fnPopulatePair(rn);
+			fnPopulateUniquePairs();
+		}
+		else return;
+	}
+	function fnResetPair() {
+		for(var i=0; i<$scope.newPair.length; i++) {
+			$scope.cells[$scope.newPair[i]].colFont = cFt1;
+		}
+		$scope.newPair = [];
+	};
+	$scope.cellClicked = function(cix) {
+		var arr = $scope.newPair;
+		if(timer) $timeout.cancel( timer );
+		if(!$scope.gameOver && arr.length<2) {
+			arr.push(cix);
+			$scope.cells[cix].colFont = cFt0;
+			if(arr.length==2) {
+				if(arr[0]==arr[1]) {
+					fnResetPair();
+				}
+				else {
+					if($scope.cells[arr[0]].no == $scope.cells[arr[1]].no) {
+						$scope.cells[arr[0]].cur = $scope.cells[arr[1]].cur = cur0;
+						$scope.cells[arr[0]].colBg = $scope.cells[arr[1]].colBg = cBg0;
+						$scope.cells[arr[0]].colFont = $scope.cells[arr[1]].colFont = cFt0;
+						$scope.newPair = [];
+						if(++$scope.pairsMatched == 8) $scope.gameOver = true;
+					}
+					else $timeout(function() { fnResetPair(); }, 1000);
+				}
+			}
+			else if(arr.length==1) {
+				timer = $timeout(function() {
+						fnResetPair();
+					}, 2000);
+			}
+		}
+		/*if(deactivateCellClick==0 && !$scope.gameOver) {
+			var arr=$scope.newPair;
+			
+			arr.push(currCIx);
+			$scope.cells[currCIx].colFont = cFt0;
+			
+			if(arr.length==1) {
+				$timeout.cancel( timer );
+				timer = $timeout( function(){ fnCheckPair(arr) }, 2000);
+			}
+			
+			if(arr.length==2) {
+				if(arr[0] == arr[1]) {
+					$scope.cells[arr[0]].colFont = $scope.cells[arr[1]].colFont = cFt1;
+					deactivateCellClick = 0;
+					$scope.newPair = [];
+				}else {
+					deactivateCellClick = 1;
+				}
+				$timeout.cancel( timer );
+				timer = $timeout( function(){ fnCheckPair(arr) }, 800);
+			}
+		}*/
+	};
+
+	//-----------------------
+	//	controller
+	fnPopulatePair( fnGetRand() );
+	fnPopulateUniquePairs();
+	fnShuffle($scope.cells);
+	
+	console.log($scope.cells);	
+});
+</script>
+</body>
+</html>

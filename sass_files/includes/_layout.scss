@@ -1,0 +1,40 @@
+// header , footer styles goes here
+
+.site{
+	
+	&-header{
+		background: rgba(234, 159, 195, 0.8);
+		
+		a{
+			
+			color: #555;
+			text-decoration: none;
+
+		}
+	}
+	
+	&-footer{
+		
+		background: rgba(234, 159, 195, 0.8);
+		text-align: center;
+		font-size: 12px;
+		padding: 1em;
+
+	}
+}
+
+.logo{ 
+		
+		float: left;
+		line-height: 2rem;
+		font-size: 1.5rem;
+		padding: 0.5em; 
+}	
+
+
+.content{
+	
+	width: 100%;
+	min-height: 550px;
+	padding-bottom: 30px;
+}
