@@ -1,0 +1,37 @@
+{
+  "name": "angular-memory-game",
+  "version": "1.0.0",
+  "description": "A simple memory game using angular.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btkarthick/angular-memory-game.git"
+  },
+  "keywords": [
+    "memory",
+    "game",
+    "angular"
+  ],
+  "author": "KB",
+  "license": "ISC",
+  
+  "devDependencies": {
+
+        "browser-sync": "^2.9.11",
+        "gulp": "^3.9.0",
+        "gulp-autoprefixer": "^3.1.0",
+        "gulp-plumber": "^1.0.1",
+        "gulp-sass": "^2.0.4",
+        "gulp-sourcemaps": "^1.6.0",
+        "gulp-util": "^3.0.6"
+        
+  },
+  
+  "bugs": {
+    "url": "https://github.com/btkarthick/angular-memory-game/issues"
+  },
+  "homepage": "https://github.com/btkarthick/angular-memory-game#readme"
+}
