@@ -5,4 +5,5 @@ typings/
 .settings/
 .vscode/
 referance/icons.list.txt
+css/*.css.map
 
