@@ -15,15 +15,15 @@
 	'use strict';
 	
 	
-	var setGameFactory = function( ALLOWED_CELLS ){
+	var setGameFactory = function( ALLOWED_CELLS, ICONSLIST ){
 	
 		var randArrBag = [], totalCells = _.parseInt(ALLOWED_CELLS * ALLOWED_CELLS);
 	
 	
 		var setInitalArrayValue = function(ranum){
 			
-			randArrBag.push({ 'value' : ranum, 'isVisible' : false, 'isMatched' : false });
-			randArrBag.push({ 'value' : ranum, 'isVisible' : false, 'isMatched' : false });
+			randArrBag.push({ 'icon' : ICONSLIST[ranum], 'value' : ranum, 'isVisible' : false, 'isMatched' : false });
+			randArrBag.push({ 'icon' : ICONSLIST[ranum], 'value' : ranum, 'isVisible' : false, 'isMatched' : false });
 			
 		};
 		
@@ -49,27 +49,8 @@
 				setArrBagValues();	
 			}
 			
-			else return;
-				
-			/*if(vm.cells.length < vm.totalCells)
-			{ 
-				var rand = _.random(1, 99);
-				var isUnique = true;
-									
-				for(var i=0; i<vm.cells.length; i++) {
+			else return;			
 			
-					if(vm.cells[i].value == rand) {
-						
-						isUnique = false;
-						break;
-					}
-				}
-						
-				if(isUnique) { setCellsArray(rand); };			
-				setPopulateCells();	
-			 }
-			 
-			 	*/		
 		};
 		
 		
@@ -95,6 +76,6 @@
 			.module('gameapp')
 			.factory('GameFactory', setGameFactory);
 	
-	setGameFactory.$inject = [ 'ALLOWED_CELLS' ];
+	setGameFactory.$inject = [ 'ALLOWED_CELLS', 'ICONSLIST' ];
 	
 })();

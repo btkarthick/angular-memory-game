@@ -135,11 +135,13 @@ h3 { font-family: "roboto-regular", Arial, sans-serif; font-size: 20px; margin: 
 
 .gm-bottom.success { background-color: #dff0d8; border-color: #d0e9c6; color: #3c763d; }
 
-.gm-table { padding-top: 30px; margin: 0 auto; width: 400px; }
+.gm-table { padding-top: 30px; margin: 0 auto; width: 900px; }
 
 .gm-table > section { float: left; background-color: #660a4d; border-radius: 3px; float: left; font-size: 15px; margin-left: 5px; margin-top: 5px; text-align: center; width: 70px; height: 70px; cursor: pointer; }
 
 .gm-table > section span { color: #FFFFFF; display: block; margin-top: 25px; }
+
+.gm-table > section i { margin-top: 25px; font-size: 25px; color: #FFFFFF; }
 
 .gm-table > section.matched { background-color: #5a660a; cursor: initial; }
 

@@ -57,7 +57,7 @@
 	&-table{
 				padding-top: 30px;
 				margin: 0 auto;
-				width: 400px;
+				width: 900px;
 				
 				> section{
 					float: left;
@@ -76,6 +76,12 @@
 						color: #FFFFFF;
 						display: block;
 						margin-top: 25px;
+					}
+					
+					i{
+						margin-top: 25px;
+						font-size: 25px;
+						color: #FFFFFF;
 					}
 					
 					&.matched{

@@ -23,7 +23,7 @@
 		vm.matchedPairs = 0;
 		vm.finishedSuccess = false;
 		vm.finishedFailed = false;
-
+	
 	};
 
 	angular
